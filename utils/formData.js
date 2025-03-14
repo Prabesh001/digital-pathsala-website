@@ -1,0 +1,69 @@
+export const formFields = [
+  {
+    name: "fullname",
+    label: "Full Name",
+    placeholder: "Enter your full name",
+    validation: { required: "Full name is required" },
+  },
+  {
+    name: "address",
+    label: "Address",
+    placeholder: "Enter your address",
+    validation: { required: "Address is required" },
+  },
+  {
+    name: "whatsapp",
+    label: "WhatsApp Number",
+    placeholder: "Enter your whatsapp number",
+    type: "tel",
+    validation: {
+      required: "WhatsApp number is required",
+      pattern: {
+        value: /^[0-9]{10}$/,
+        message: "Invalid phone number",
+      },
+    },
+  },
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email address",
+    type: "email",
+    validation: {
+      required: "Email is required",
+      pattern: {
+        value: /^\S+@\S+$/i,
+        message: "Invalid email address",
+      },
+    },
+  },
+];
+
+export const courses = [
+  {
+    id: 77,
+    name: "Graphic Design (Photoshop)",
+    price: 999,
+    seat: 55,
+    classGroups: [
+      {
+        id: 149,
+        time: "8:00 PM - 9:30 PM",
+        date: "March 23, 2025",
+      },
+    ],
+  },
+  {
+    id: 50,
+    name: "UI/UX Certification",
+    price: 999,
+    seat: 33,
+    classGroups: [
+      {
+        id: 150,
+        time: "8:00pm -9:30pm",
+        date: "March 28, 2025",
+      },
+    ],
+  },
+];

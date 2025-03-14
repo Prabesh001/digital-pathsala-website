@@ -15,12 +15,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --text: #0a0a0a;
+    --foreground: #f1eded;
+    --theme: #008000;
+    --theme-light: #08ab08ef;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }
