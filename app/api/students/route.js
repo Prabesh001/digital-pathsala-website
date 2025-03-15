@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/app/api/route";
-import Student from "@/models/Students";
+// import Student from "@/models/Students";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
@@ -7,12 +7,12 @@ export async function GET(req) {
     const { db } = await connectToDatabase();
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get("limit"));
-    const students = await db
+    const reviews = await db
       .collection("Students")
       .find({})
       .limit(limit)
       .toArray();
-    return NextResponse.json(students);
+    return NextResponse.json(reviews);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch data" },

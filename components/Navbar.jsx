@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="container">
           {/* Desktop Navigation */}
           <div className="hidden md:grid grid-cols-12 lg:flex items-center gap-2 xl:gap-4 text-center">
-            <div className="justify-between flex gap-4 items-center col-span-6">
+            <div className="justify-between flex gap-4 items-end col-span-6">
               <Link href="/">
                 <Image
                   className="logo"

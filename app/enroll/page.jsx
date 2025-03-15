@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getData, postData } from "@/utils/api";
 import { formFields } from "@/utils/formData";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function EnrollmentForm() {
   const [myCourse, setMyCourse] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const getCourses = async () => {
@@ -27,6 +28,7 @@ export default function EnrollmentForm() {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
       fullName: "",
@@ -39,18 +41,23 @@ export default function EnrollmentForm() {
   });
 
   const onSubmit = async (data) => {
+    setSubmitting(true);
     const response = await postData("/api/students", data);
+    toast.isActive("Submitting")
 
-    // Check if the response contains an error
     if (response.error) {
       toast.error(`Error occurred: ${response.error}`);
     } else {
       toast.success("Successfully submitted the form!");
+      reset();
+      setSelectedCourse({})
     }
+    setSubmitting(false);
   };
 
   return (
     <section className="w-[86%] mx-auto py-10">
+      <ToastContainer />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
           <h1 className="text-2xl font-bold">Enrollment Form</h1>
@@ -80,6 +87,7 @@ export default function EnrollmentForm() {
                       className="w-full rounded-md border border-gray-400 focus:outline-blue-500 p-2"
                       placeholder={field.placeholder}
                       type={field.type || "text"}
+                      readOnly={submitting}
                     />
                     {errors[field.name] && (
                       <span className="text-red-600 text-sm">
@@ -91,62 +99,68 @@ export default function EnrollmentForm() {
               </div>
             </div>
 
-            {/* Qualification Field */}
-            <div className="flex flex-col">
-              <label htmlFor="qualification">
-                Educational background <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="qualification"
-                {...register("qualification", {
-                  required: "Educational background is required",
-                })}
-                className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
-              >
-                <option value="">Select</option>
-                <option value="see">S.E.E</option>
-                <option value="intermediate">Intermediate(+2)</option>
-                <option value="bachelor">Bachelor</option>
-                <option value="master">Master</option>
-                <option value="other">Other</option>
-              </select>
-              {errors.qualification && (
-                <span className="text-red-600 text-sm">
-                  {errors.qualification.message}
-                </span>
-              )}
-            </div>
+            <div className="flex gap-10 flex-wrap">
+              {/* Qualification Field */}
+              <div className="flex flex-col">
+                <label htmlFor="qualification">
+                  Educational background <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="qualification"
+                  {...register("qualification", {
+                    required: "Educational background is required",
+                  })}
+                  className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
+                  readOnly={submitting}
+                >
+                  <option value="">Select</option>
+                  <option value="see">S.E.E</option>
+                  <option value="intermediate">Intermediate(+2)</option>
+                  <option value="bachelor">Bachelor</option>
+                  <option value="master">Master</option>
+                  <option value="other">Other</option>
+                </select>
+                {errors.qualification && (
+                  <span className="text-red-600 text-sm">
+                    {errors.qualification.message}
+                  </span>
+                )}
+              </div>
 
-            {/* Course Field */}
-            <div className="flex flex-col">
-              <label htmlFor="course">
-                Course <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="course"
-                {...register("course", {
-                  required: "Course selection is required",
-                })}
-                className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
-                onChange={(e) => {
-                  const course = myCourse.find((c) => c._id === e.target.value);
-                  setSelectedCourse(course || {});
-                }}
-              >
-                <option value="" disabled>
-                  Select
-                </option>
-                {myCourse.map((course) => (
-                  <option key={course._id} value={course._id}>
-                    {course.name}
+              {/* Course Field */}
+              <div className="flex flex-col">
+                <label htmlFor="course">
+                  Course <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="course"
+                  {...register("course", {
+                    required: "Course selection is required",
+                  })}
+                  className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
+                  onChange={(e) => {
+                    const course = myCourse.find(
+                      (c) => c._id === e.target.value
+                    );
+                    setSelectedCourse(course || {});
+                  }}
+                  readOnly={submitting}
+                >
+                  <option value="" disabled>
+                    Select
                   </option>
-                ))}
-              </select>
-              {errors.course && (
-                <span className="text-red-600 text-sm">
-                  {errors.course.message}
-                </span>
-              )}
+                  {myCourse.map((course) => (
+                    <option key={course._id} value={course._id}>
+                      {course.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.course && (
+                  <span className="text-red-600 text-sm">
+                    {errors.course.message}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
@@ -183,7 +197,7 @@ export default function EnrollmentForm() {
 
               <button
                 type="submit"
-                className={`bg-[var(--theme)] w-full text-white py-2 rounded-md flex items-center justify-center gap-2`}
+                className={`bg-[var(--theme)] hover:bg-green-700 transition-all duration-300 w-full text-white py-2 rounded-md flex items-center justify-center gap-2`}
               >
                 PROCEED TO CHECKOUT
               </button>
