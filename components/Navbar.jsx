@@ -17,17 +17,13 @@ import Sidebar from "./Sidebar";
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
-  let page = true;
-
   const handleSidebar = () => {
     setShowSidebar((prev) => !prev);
-    page = !page;
   };
 
-  console.log(showSidebar)
   return (
-    <section className="bg-white z-[20] shadow-md" id="nav">
-      <nav className="navbar p-5 flex sticky justify-center">
+    <section className="bg-white z-20 shadow-md" id="nav">
+      <nav className=" navbar p-5 flex  justify-center">
         <Sidebar
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
@@ -38,7 +34,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:grid grid-cols-12 lg:flex items-center gap-2 xl:gap-4 text-center">
             <div className="justify-between flex gap-4 items-center col-span-6">
-              <Link href="#">
+              <Link href="/">
                 <Image
                   className="logo"
                   src={images.logo}
@@ -134,7 +130,7 @@ const Navbar = () => {
             <div className="col-span-6 flex gap-4 md:gap-1 items-center justify-end">
               <div className="enroll">
                 <Link
-                  href="#"
+                  href="/enroll"
                   className="px-4 bg-[#E2E5E9] hover:bg-[#c1c1c1] flex items-center gap-1 duration-200 rounded-md justify-center py-2"
                 >
                   Student Portal <FaGraduationCap size={22} />
@@ -147,7 +143,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="flex justify-between items-center">
               <div>
-                <Link href="#">
+                <Link href="/">
                   <Image
                     className="logo"
                     src={images.logo}
@@ -158,7 +154,7 @@ const Navbar = () => {
                 </Link>
               </div>
               <div className="flex gap-5">
-                <Link href="#">
+                <Link href="/">
                   <FaHouse size={24} color="green" />
                 </Link>
                 <button
@@ -187,7 +183,7 @@ const Navbar = () => {
 
               <div className="enroll">
                 <Link
-                  href="#"
+                  href="/enroll"
                   className="px-4 bg-[#E2E5E9] hover:bg-[#c1c1c1] flex items-center gap-1 duration-200 rounded-md justify-center py-2"
                 >
                   Student Portal <FaGraduationCap size={20} />

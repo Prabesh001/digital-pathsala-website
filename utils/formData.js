@@ -1,6 +1,6 @@
 export const formFields = [
   {
-    name: "fullname",
+    name: "fullName",
     label: "Full Name",
     placeholder: "Enter your full name",
     validation: { required: "Full name is required" },
@@ -12,12 +12,12 @@ export const formFields = [
     validation: { required: "Address is required" },
   },
   {
-    name: "whatsapp",
-    label: "WhatsApp Number",
-    placeholder: "Enter your whatsapp number",
+    name: "mobileNumber",
+    label: "Mobile Number",
+    placeholder: "Enter your Mobile number",
     type: "tel",
     validation: {
-      required: "WhatsApp number is required",
+      required: "Mobile number is required",
       pattern: {
         value: /^[0-9]{10}$/,
         message: "Invalid phone number",
@@ -64,6 +64,77 @@ export const courses = [
         time: "8:00pm -9:30pm",
         date: "March 28, 2025",
       },
+    ],
+  },
+];
+
+export const enquiryForm = [
+  {
+    name: "fullName",
+    label: "Full Name",
+    placeholder: "Enter your full name",
+    validation: { required: "Full name is required" },
+  },
+  {
+    name: "address",
+    label: "Address",
+    placeholder: "Enter your address",
+    validation: { required: "Address is required" },
+  },
+  {
+    name: "mobileNumber",
+    label: "Mobile Number",
+    placeholder: "Enter your Mobile number",
+    type: "tel",
+    validation: {
+      required: "Mobile number is required",
+      pattern: {
+        value: /^[0-9]{10}$/,
+        message: "Invalid phone number",
+      },
+    },
+  },
+];
+
+export const materials = [
+  "Free Certificate",
+  "Life time video access",
+  "Future Support",
+  "Live sessions on Google Meet",
+];
+
+export const requirements = [
+  "Basic computer knowledge",
+  "Laptop with internet",
+  "Dedication to learn",
+];
+
+export const syllabus = [
+  {
+    title: "Introduction",
+    items: [
+      "Welcome & Curriculum Overview",
+      "A First Taste of HTML & CSS",
+      "How The Web Works",
+      // ... other items
+    ],
+  },
+  {
+    title: "Details",
+    items: [
+      "Welcome & Curriculum Overview",
+      "A First Taste of HTML & CSS",
+      "How The Web Works",
+      // ... other items
+    ],
+  },
+  {
+    title: "Introduction",
+    items: [
+      "Welcome & Curriculum Overview",
+      "A First Taste of HTML & CSS",
+      "How The Web Works",
+      // ... other items
     ],
   },
 ];

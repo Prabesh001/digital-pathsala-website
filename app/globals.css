@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --theme: #008000;
+  --theme-light: #08ab08ef;
 }
 
 @theme inline {
@@ -17,12 +19,18 @@
     --background: #0a0a0a;
     --text: #0a0a0a;
     --foreground: #f1eded;
-    --theme: #008000;
-    --theme-light: #08ab08ef;
   }
 }
 
 body {
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.sd-box:hover{
+  box-shadow: 0px 2px 5px lightgray, 2px 3px 5px lightgray;
+}
+
+.on-top{
+  z-index: 1000 !important;
 }

@@ -27,7 +27,7 @@ const Footer = () => {
                 <Link href="#"> 9812345678</Link>
               </li>
               <li>
-                <Link href="#">www.dp.com</Link>
+                <Link href="#">www.digitalpathshalanepal.com/</Link>
               </li>
               <li>Itahari - 4, Sunsari</li>
               <li>
