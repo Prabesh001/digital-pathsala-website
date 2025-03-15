@@ -18,9 +18,10 @@ import {
 } from "react-icons/fa6";
 import { enquiryForm, requirements } from "@/utils/formData";
 import { toast, ToastContainer } from "react-toastify";
+import Loading from "@/components/Loading";
 
 const CourseDetail = () => {
-  const { id } = useParams(); // ✅ Extract id correctly
+  const { id } = useParams(); 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -87,7 +88,7 @@ const CourseDetail = () => {
     }
   };
 
-  if (loading) return <p className="text-center py-10">Loading course...</p>;
+  if (loading) return <Loading/>;
   if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
 
   return (

@@ -8,7 +8,7 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const limit = parseInt(searchParams.get("limit"));
     const students = await db
-      .collection("students")
+      .collection("Students")
       .find({})
       .limit(limit)
       .toArray();
@@ -25,8 +25,8 @@ export async function POST(request) {
   const body = await request.json();
 
   try {
-    const { db } = await connectToDatabase(); 
-    const newStudent = await Student.insertOne(body);
+    const { db } = await connectToDatabase();
+    const newStudent = await db.collection("Students").insertOne(body);
 
     return NextResponse.json(newStudent, { status: 201 });
   } catch (error) {
