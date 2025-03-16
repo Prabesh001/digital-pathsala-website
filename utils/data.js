@@ -43,14 +43,14 @@ export const itSupport = [
     links: [
       { app: "whatsapp", icon: <FaWhatsapp />, value: "9812345678" },
       { app: "viber", icon: <FaViber />, value: "9812345678" },
-      { app: "email", icon: <FaRegEnvelope />, value: "example@gmail.com" },
+      { app: "email", icon: <FaRegEnvelope />, value: "basnetmanish089@gmail.com" },
     ],
   },
   {
     title: "Call Support (8am - 10pm)",
     links: [
       { app: "landline", icon: <FaTty />, value: "025-588888" },
-      { app: "NTC", icon: <FaMobileScreen />, value: "9812345678" },
+      { app: "phone", icon: <FaMobileScreen />, value: "9812345678" },
     ],
   },
   {

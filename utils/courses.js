@@ -93,7 +93,35 @@
       "image_url":"https://codeit.com.np/storage/01JJRBQMZFCZM0B1DSA8FFM0ZM.avif",
       "duration": "30 Days",
       "description": "Learn backend development with Django, a high-level Python framework for building efficient web applications.",
-      "syllabus_url": "https://bit.ly/4epbY0u",
+      
+        "requirement": [
+          "Basic Python Knowledge"
+        ],
+        "syllabus": {
+          "week_1": [
+            "Introduction, pip, virtual environments",
+            "Creating Django Project & App",
+            "Understanding folder structure",
+            "Basic Views & Templates"
+          ],
+          "week_2": [
+            "Project Overview (Blog Management System)",
+            "Planning, project folder structure & components, setup, ORM",
+            "Designing auth system, models, forms",
+            "Understanding token, session, cookie, static files(CSS, JS)"
+          ],
+          "week_3": [
+            "CRUD Operations for Blog Posts, Middleware",
+            "Advanced Templates & Querysets",
+            "Pagination & Searching"
+          ],
+          "week_4": [
+            "User Profile & Dashboard",
+            "User Profile Model, views, edit",
+            "Testing, Deployment"
+          ]
+        },
+      
       "skills_acquired": [
         "Django Basics: Pip, Virtual Environments, Project Setup",
         "Views, Templates, Folder Structure",
@@ -155,7 +183,37 @@
       "image_url":"https://imgs.search.brave.com/YApxIJHpGGU9FAbC_j9q507mo2FsP_gYpK47xJmaOKc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aWFtdGltY29yZXku/Y29tL2Fzc2V0cy9p/bWFnZXMvY291cnNl/cy9ncy1hc3AtMDFf/dGl0bGUucG5n",
       "duration": "30 Days",
       "description": "Develop high-performance web applications with ASP.NET Core and C#.",
-      "syllabus_url": "https://bit.ly/3XJ709d",
+      "syllabus": {
+    "requirement": [
+      "IDE: Visual Studio 2022",
+      "Database: SQL Server Management Studio"
+    ],
+    "weeks": {
+      "week_1": [
+        "IDE Setup",
+        "Basic C# (Operators, Data Types, Anonymous Types, Dynamic Types, LINQ, Inheritance, Dependency Injection...)",
+        "Project Setup and Understanding Folder Structure"
+      ],
+      "week_2": [
+        "MVC (Model, View, And Controller)",
+        "Project (News Blog)",
+        "Routing",
+        "Understanding Concept of Claims-based Cookies Authentication and Authorization",
+        "Validation",
+        "Understanding File Upload Mechanism"
+      ],
+      "week_3": [
+        "Continue Project with proper CRUD operation using Database First approach",
+        "Understanding Unobtrusive AJAX"
+      ],
+      "week_4": [
+        "Project using .NET MAUI Blazor Hybrid App for iOS, Android, Mac, Windows",
+        "Understanding Folder Structure",
+        "CRUD Operation using SQLite Database",
+        "Authorization and Authentication"
+      ]
+    }
+  },
       "skills_acquired": [
         "Learn C# and MVC Architecture",
         "Routing and Validation",
@@ -178,66 +236,3 @@
       ]
     }
   ]
-
-
-  [
-
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/357720692_1633633700482790_3750526617895490452_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Ssac0aUsIb4Q7kNvgFgR0Fd&_nc_oc=AdjVM1SDcu1Vz6iPvqE8k9Uv-zph2WEf-GYIRAh3ItqNaqckNfCu7jqKue_Cu94bMCozCBXRGjggNUrsr_j2p6xf&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=rwlNKO1ChiDcxSzRvOCQrA&oh=00_AYEQ0qGd1HzQVXZkQZcHLYlsdd9wGRwylaVMfC-KxqjEKQ&oe=67DB84B5",
-      "user": "Nishan Pradhan ",
-      "review": "Digital Pathshala excels in teaching coding (Node.js, React.js, web development). With expert instructors, interactive learning, and up-to-date content, it's a top-notch platform. The user-friendly interface and community support make it ideal for beginners and experienced coders alike. Highly recommended!"
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/393257285_901111271389706_264975339080080138_n.jpg?stp=c0.0.1037.1037a_cp0_dst-jpg_s40x40_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6D_OXVW8-xUQ7kNvgHFAGMC&_nc_oc=Adi0RKFDyVrL1Z2DYq-JGOVpYlynNBjvTlHjD9hmXczUcUC0bUrVmfGmZhzWEb1zpJ-B3s-wFsHqORVmyGVxjL26&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=QmV7LT8ocsddzLH-BkdjiA&oh=00_AYEgFHhI_4Qj4e31tUZK5CN2ZgF5gKRm6OWyWXFV0slYTw&oe=67DB55A5",
-      "user": "Mdn Khadka",
-      "review": "Learning at Digital Pathshala was a new experience for me. If you want to learn coding, I recommend everyone learn at Digital Pathshala. I took a 20-day React.js class and a 60-day Node.js class over two to three months. It was simple and easy to learn. The Q&A sessions were very polite, effective, and helpful in resolving doubts and errors. I would like to thank Manish Bro and Digital Pathshala from the bottom of my heart for our delightful coding journey."
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/472264385_983864150467625_3838048954934538568_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=8ENoxeWfXW0Q7kNvgEz-BWv&_nc_oc=Adg87snyuWR9mbqsPOBMMwUe53zOJ6aymXyZ6NzdHmcKAdx54P6gyfIdq4XhGhWPS9uglUYvhzTLymJ8nPHYC7JB&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=K60taDwRn3Xw4hA6ARXAbA&oh=00_AYFPxzZEhc9AoBmhNNgcYk9V6J9SEJKvUqB4DQfXtx0IPQ&oe=67DB5AD6",
-      "user": "Rajeesh Paandey",
-      "review": "I recently joined Digital Pathshala and it has been a game changer. Courses such as MERN stack, Django, React Native, and web development are available on the platform for lifetime. The content is simple to understand, and the hands-on activities are fantastic. What distinguishes it is the mentor's humble and helpful nature..,you may ask questions whenever you want, and they're always willing to help. This platform has given me confidence in my talents and prepared me to secure an internship with Lunar IT. If you want to establish a successful tech career, Digital Pathshala is the place to be!"
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/433446048_778947920850098_7021435495868286933_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=D-hsqgMhRTUQ7kNvgF3krb3&_nc_oc=AdjXTAY7GAP_ABORL-kAnU_MW_zx63wK6oxUlBNLTPYAaaSTRHyyRJKobRTeKin-FdU1ndz0Dnk2jAiClPWxql7l&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=K60taDwRn3Xw4hA6ARXAbA&oh=00_AYF76DzXhHXY1qKs79PintXXQZSLMws6um-eCEpchSVRhg&oe=67DB57DE",
-      "user": "सुलब आचार्य ",
-      "review": "I had an incredible experience at Digital Pathshala! The instructors are knowledgeable and supportive, guiding us every step of the way. The curriculum is up-to-date, and the internship program provided valuable real-world experience. Plus, their placement support is top-notch! Whenever I faced challenges, they were always there to help. Highly recommend for anyone looking to excel in IT! "
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/470207202_1322032968990757_1985189963262093673_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=100&ccb=1-7&_nc_sid=e99d92&_nc_ohc=JiyP81l8YXEQ7kNvgGtn_Zf&_nc_oc=AdhTu7K1WqNNiBrwX8HRxLtlP4kZKRwRdfodaxGMrJhLeloXvab6Gp9lmVkAvBj-RjV9LZ5uelrXtBNMIYDQG32f&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=wOeeGB2QWWdTyYuUlbuk0w&oh=00_AYGUYHo6vCyMhdciMtVBslFLUsLzI8Fp-qwCbXQCYbzi6A&oe=67DB562D",
-      "user": "Abhesh Mandal ",
-      "review": "The perfect IT training institute for creative and practical learning with experienced instructors.Best place to start your IT career.�"
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/484867824_649121421404584_2060669809653542679_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=ECORSgU7cqQQ7kNvgFXrjaB&_nc_oc=AdiUvNBd8MsZiACV6yHHep4owx8rCFVj3HY6Xc9vb8WHo_C0WlhZzUWgjTXUwi9WQN7HKf9AgR1xJYHU9m9qj900&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=Y1Jyzh7jTtJPNkXFmSCW9g&oh=00_AYEkljR2s53e3FNR2bCUHfw87RMUlzcb_Ii5PwLBlI3FJQ&oe=67DB6514",
-      "user": "Dambar Sing Gharti Magar",
-      "review": "I was unknown about Digital Pathshala, but when I joined ReactJS Workshop just at Rs.99 then, I really liked Mr. Manish Basnet sir's way of teaching and explaining the concept of Each and Every Term. That's why I joined the next Course (MERN STACK Wala) of Digital Pathshala."
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/468965710_8467014800073771_7765615560958498510_n.jpg?stp=c0.0.1526.1526a_cp0_dst-jpg_s40x40_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=d3g5FKecT30Q7kNvgF0ZFP8&_nc_oc=AdiyaYajXQla49kthwid2kshRcIBjcnQlitPXHCjn37DubJC_RGEYTo1jtwegLDH2TFd0UdXSuW_jDJ6IP7_nyL_&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=yt5p7Adn3sVsYDGjnPbn1Q&oh=00_AYHfjpIXlk8s3lr-HDlf7oTNVPqu29AOc77ykwRg6_8qTA&oe=67DB5902",
-      "user": "Súmãñ Sapkota ",
-      "review": "An ideal IT training institute offering creative and practical learning guided by experienced instructors — the perfect place to launch your IT career"
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/428602822_1145485390161246_4599425808636555737_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=100&ccb=1-7&_nc_sid=1d2534&_nc_ohc=n1xL5DRFGwMQ7kNvgFfqej3&_nc_oc=AdjHQQtFtP12vNu6wRtv4h0ZMMDhe3mMg8HhafcmovsEyQVIaxtFlBXc0Ca1A9c01N-QUxRUDPrGsyMWnFwYHSrO&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=D8nwiEsA6oCYUVwyuiqbqg&oh=00_AYGkOHp5Ju6v866H9qaRZFup_KdFmasM9MYnSNi1KKpiEw&oe=67DB83AB",
-      "user": "Milan Bhandari",
-      "review": "Impressive Node.js course at Digital Pathshala! Practical learning, clear instructions, boosted my web dev skills. Highly recommend!"
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/472177323_1356254305536052_4412713938061997316_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=103&ccb=1-7&_nc_sid=e99d92&_nc_ohc=ICRHk6nBKHkQ7kNvgE5RYOe&_nc_oc=AdjIzDm4cI9Wrf3aLcufdBCJwcwjBZ-hHrWEOrrOUULwFZPTd8SKEsnztOusbQw2qMer021mn2FRjA-J2uoq8pm0&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=D8nwiEsA6oCYUVwyuiqbqg&oh=00_AYExXHJDBTFjNQ6kAB7qnok6_xQySUm_IsHKvPmN5XCNaA&oe=67DB64BB",
-      "user": "Arjab Lamichhane",
-      "review": "Great place to get my hands on different technologies. Proper teaching and understandable language."
-    },
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/437942947_1639383776892149_8089708449580942258_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=103&ccb=1-7&_nc_sid=e99d92&_nc_ohc=BWI2Ge9NOGUQ7kNvgGpZNsB&_nc_oc=AdhhwUTeD-UukTE8Sr6vfp9dXOZYlrrNaOPPs3VyXQUgae-L_sncyIQekkyTnksZpo-LQSQsICgWX_q6szbrGPzX&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=D8nwiEsA6oCYUVwyuiqbqg&oh=00_AYERk2s8vwk00pN4fc2T3EnYhCtgnXHn5upQUDRFM4OayQ&oe=67DB546A",
-      "user": "Sonam Sherpa",
-      "review": "The Node.js session by Digital Pathshala was fantastic! The instructors explained complex concepts in an easy-to-understand way. Hands-on exercises helped solidify my learning, without any doubts. I feel much more confident in Node.js now. Thank you & Highly recommended!"
-    },
-    
-    {
-      "image_url":"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-1/405108389_1516670132518618_3069810503171013295_n.jpg?stp=cp0_dst-jpg_s40x40_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_ohc=pKmqlxPVoWkQ7kNvgFGa6cH&_nc_oc=Adh-_AWnSMThu9R2DTP81Qgm22vxTQKRFE_Os96trhTSWmXZSpx70PfmQJVoVJzlsKHjtIqhow5K31inI3D0crLe&_nc_zt=24&_nc_ht=scontent.fktm19-1.fna&_nc_gid=wOeeGB2QWWdTyYuUlbuk0w&oh=00_AYGfHpwEVohr-INuGVQvieSGRkM-peIyD1ee6LtwXKCCvg&oe=67DB7492",
-      "user": "दर्पण अधिकारी ",
-"review":"Working with Digital Pathsala has been an amazing experience. It allows us to showcase our creativity while receiving valuable guidance. We also gain insights into effective project management."    }
-
-
-  ]
-  

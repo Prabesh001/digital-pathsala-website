@@ -9,6 +9,7 @@ import {
   FaArrowRight,
   FaCirclePlay,
   FaRegCircleCheck,
+  FaRegCircleXmark,
   FaRegClock,
   FaRegCommentDots,
   FaRegSquareCheck,
@@ -17,6 +18,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import Loading from "@/components/Loading";
 import { enquiryForm, requirements } from "@/utils/formData";
+import AccordianGroup from "@/components/Accordian";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -24,6 +26,8 @@ const CourseDetail = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+
+  console.log(course);
 
   const {
     register,
@@ -50,7 +54,7 @@ const CourseDetail = () => {
     const fetchCourseData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/courses/${id}`);
+        const response = await fetch(`http://localhost:3000/api/courses/${id}`);
         const data = await response.json();
 
         if (data.error) {
@@ -163,9 +167,9 @@ const CourseDetail = () => {
                           Fee: Rs.{course?.price} /-
                         </span>
                       </div>
-                      {course?.prevprice && (
+                      {course?.prevPrice && (
                         <div className="text-orange-600 line-through">
-                          {course.prevprice} /-
+                          Rs.{course.prevPrice} /-
                         </div>
                       )}
                     </div>
@@ -217,18 +221,31 @@ const CourseDetail = () => {
                   {/* Requirements */}
                   <h5 className="text-xl font-semibold mb-4">Requirements</h5>
                   <div className="flex flex-col gap-4">
-                    {requirements?.map((item, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <FaRegCircleCheck />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                    {course?.requirement?.length !== 0 ? (
+                      course?.requirement?.map((item, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <FaRegCircleCheck />
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="flex gap-2 items-center">
+                        <FaRegCircleXmark /> No requirement or prerequisite
+                        knowledge necessary.
+                      </p>
+                    )}
                   </div>
+
+                  {course?.syllabus ? (
+                    <AccordianGroup data={course.syllabus} />
+                  ) : (
+                    <p>Loading syllabus...</p>
+                  )}
                 </div>
 
                 {/* Enquiry Form */}
                 <div className="md:col-span-5 z-10">
-                  <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-lg sticky top-24">
+                  <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-lg sticky top-4">
                     <h5 className="text-xl font-semibold flex items-center gap-2 mb-4">
                       Quick Enquiry <FaRegCommentDots />
                     </h5>

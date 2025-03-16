@@ -19,7 +19,7 @@ const Courses = () => {
           </div>
         </div>
       </div>
-      <CourseGrid limit={1} />
+      <CourseGrid />
     </>
   );
 };

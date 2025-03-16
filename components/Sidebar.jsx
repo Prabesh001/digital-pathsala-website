@@ -17,8 +17,6 @@ const Sidebar = ({ onClick, showSidebar }) => {
     setSelectedIndex(myPath ? myPath.replaceAll("-"," ") : "home");
   }, [pathname]);
 
-  console.log(selectedIndex);
-
   const options = [
     "home",
     "about us",
@@ -28,6 +26,7 @@ const Sidebar = ({ onClick, showSidebar }) => {
     "events",
     "contact us",
   ];
+
   useEffect(() => {
     const closeSidebar = (event) => {
       const side = document.querySelector(".drawer");
@@ -117,11 +116,11 @@ const Sidebar = ({ onClick, showSidebar }) => {
           <div>
             <Link
               className="flex items-center gap-x-2"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=example@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=basnetmanish089@gmail.com"
               target="_blank"
             >
               <FaRegEnvelope />
-              example@gmail.com
+              basnetmanish089@gmail.com
             </Link>
           </div>
         </div>

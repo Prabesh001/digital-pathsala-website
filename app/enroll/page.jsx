@@ -13,7 +13,7 @@ export default function EnrollmentForm() {
   useEffect(() => {
     const getCourses = async () => {
       try {
-        const data = await getData("/api/courses");
+        const data = await getData("http://localhost:3000/api/courses");
         setMyCourse(data);
       } catch (error) {
         console.error(error);
@@ -37,7 +37,7 @@ export default function EnrollmentForm() {
       email: "",
       qualification: "",
       course: "",
-      status:"Pending"
+      status: "Pending",
     },
   });
 

@@ -9,8 +9,7 @@ const CourseGrid = ({limit}) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Define the limit or leave it out to use the default 10
-    fetch(`/api/courses?${limit}`)
+    fetch(`http://localhost:3000/api/courses?${limit}`)
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);

@@ -23,11 +23,17 @@ const Footer = () => {
             </div>
             <ul>
               <li>
-                <Link href="#">025-585858 </Link>,
-                <Link href="#"> 9812345678</Link>
+                <span>025-585858 </span>,<span> 9812345678</span>
               </li>
               <li>
-                <Link href="#">www.digitalpathshalanepal.com/</Link>
+                <a
+                  href="https://www.digitalpathshalanepal.com"
+                  className="text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  www.digitalpathshalanepal.com
+                </a>
               </li>
               <li>Itahari - 4, Sunsari</li>
               <li>
@@ -81,19 +87,18 @@ const Footer = () => {
 
           {/* Support Section */}
           <div className="space-y-2 lg:col-span-3">
-            <h6 className="text-xl font-bold">Code IT Support</h6>
+            <h6 className="text-xl font-bold">Digital Pathsala Support</h6>
             {itSupport.map((section, index) => (
               <div key={index} className="flex flex-col">
                 <strong>{section.title}</strong>
                 {section.links.map((link) => (
-                  <Link
-                    key={link.app}
-                    href="#"
-                    className="capitalize flex gap-1 items-center"
-                  >
+                  <span key={link.app} className="flex gap-1 text-nowrap items-center">
                     {link.icon}
-                    {link.app.replace("-", " ")}: {link.value}
-                  </Link>
+                    <span className="capitalize">
+                      {link.app.replace("-", " ")}
+                    </span>
+                    : {link.value}
+                  </span>
                 ))}
               </div>
             ))}

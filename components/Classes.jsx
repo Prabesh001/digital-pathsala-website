@@ -11,7 +11,7 @@ const Classes = () => {
 
   useEffect(() => {
     const limit = 9;
-    fetch(`/api/courses?limit=${limit}`)
+    fetch(`http://localhost:3000/api/courses?limit=9`)
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
@@ -22,6 +22,8 @@ const Classes = () => {
         setLoading(false);
       });
   }, []);
+
+  console.log(courses)
 
   return (
     <section className="mx-auto p-10">
