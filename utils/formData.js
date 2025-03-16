@@ -3,13 +3,11 @@ export const formFields = [
     name: "name",
     label: "Full Name",
     placeholder: "Enter your full name",
-    validation: { required: "Full name is required" },
   },
   {
     name: "address",
     label: "Address",
     placeholder: "Enter your address",
-    validation: { required: "Address is required" },
   },
   {
     name: "phone",
@@ -73,13 +71,11 @@ export const enquiryForm = [
     name: "name",
     label: "Full Name",
     placeholder: "Enter your full name",
-    validation: { required: "Full name is required" },
   },
   {
     name: "address",
     label: "Address",
     placeholder: "Enter your address",
-    validation: { required: "Address is required" },
   },
   {
     name: "phone",

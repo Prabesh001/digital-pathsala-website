@@ -22,6 +22,8 @@ export default function EnrollmentForm() {
     getCourses();
   }, []);
 
+  console.log(myCourse);
+
   const {
     register,
     handleSubmit,
@@ -31,13 +33,15 @@ export default function EnrollmentForm() {
   } = useForm({
     defaultValues: {
       name: "",
-      date: new Date(),
+      date: new Date().toLocaleDateString("en-CA"),
       address: "",
       phone: "",
       email: "",
-      qualification: "",
-      course: "",
+      qualification: "see",
+      course: myCourse[0]?.name,
       status: "Pending",
+      courseType: "Online",
+      remarks: "I am interested in this class.",
     },
   });
 
@@ -46,7 +50,10 @@ export default function EnrollmentForm() {
     toast.info("Submitting...");
 
     try {
-      const response = await postData("/api/students", data);
+      const response = await postData(
+        "http://localhost:3000/api/students",
+        data
+      );
       if (response.error) {
         toast.error(`Error: ${response.error}`);
       } else {
@@ -84,19 +91,14 @@ export default function EnrollmentForm() {
                 {formFields.map((field) => (
                   <div key={field.name}>
                     <label htmlFor={field.name}>
-                      {field.label} <span className="text-red-500">*</span>
+                      {field.label}{" "}
+                      {field.validation && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       id={field.name}
-                      {...register(field.name, {
-                        required: `${field.label} is required`,
-                        pattern: field.pattern
-                          ? {
-                              value: field.pattern,
-                              message: field.errorMessage,
-                            }
-                          : undefined,
-                      })}
+                      {...register(field.name, field.validation || {})}
                       className="w-full rounded-md border border-gray-400 focus:outline-blue-500 p-2"
                       placeholder={field.placeholder}
                       type={field.type || "text"}
@@ -115,29 +117,19 @@ export default function EnrollmentForm() {
             <div className="flex gap-10 flex-wrap">
               {/* Qualification Field */}
               <div className="flex flex-col">
-                <label htmlFor="qualification">
-                  Educational Background <span className="text-red-500">*</span>
-                </label>
+                <label htmlFor="qualification">Educational Background</label>
                 <select
                   id="qualification"
-                  {...register("qualification", {
-                    required: "Select a qualification",
-                  })}
-                  className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
+                  {...register("qualification")}
+                  className="w-full rounded-md border border-gray-400 p-2 focus:outline-blue-500"
                   disabled={submitting}
                 >
-                  <option value="">Select</option>
                   <option value="see">S.E.E</option>
                   <option value="intermediate">Intermediate(+2)</option>
                   <option value="bachelor">Bachelor</option>
                   <option value="master">Master</option>
                   <option value="other">Other</option>
                 </select>
-                {errors.qualification && (
-                  <span className="text-red-600 text-sm">
-                    {errors.qualification.message}
-                  </span>
-                )}
               </div>
 
               {/* Course Field */}
@@ -161,7 +153,7 @@ export default function EnrollmentForm() {
                     Select
                   </option>
                   {myCourse.map((course) => (
-                    <option key={course._id} value={course._id}>
+                    <option key={course._id} value={course.name}>
                       {course.name}
                     </option>
                   ))}
@@ -171,6 +163,17 @@ export default function EnrollmentForm() {
                     {errors.course.message}
                   </span>
                 )}
+              </div>
+
+              <div className="w-full -mt-4">
+                <label htmlFor="remark">Message</label>
+                <textarea
+                  id="remark"
+                  placeholder="Enter your remarks!"
+                  {...register("remarks")}
+                  className="w-full min-h-10 p-2 border focus:outline-blue-500 border-gray-400 rounded"
+                  readOnly={submitting}
+                />
               </div>
             </div>
           </div>

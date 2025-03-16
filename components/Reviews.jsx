@@ -12,11 +12,8 @@ const Review = ({ image, name, review }) => {
     >
       <div className="flex flex-col justify-between rounded-md border border-neutral-300 bg-gray-100 p-8 shadow-sm max-w-sm">
         <div className="text-violet-500 flex gap-2">
-          <FaRegStar size={18} />
-          <FaRegStar size={18} />
-          <FaRegStar size={18} />
-          <FaRegStar size={18} />
-          <FaRegStar size={18} />
+          {[...Array(5)].map((_,i)=><FaRegStar key={i} size={18} />)}
+          
         </div>
 
         <p className="my-4 mb-0 text-base font-normal leading-relaxed tracking-wide text-gray-900">
@@ -57,7 +54,7 @@ const ReviewGrid = () => {
 
   useEffect(() => {
     const limit = 9;
-    fetch(`/api/reviews?limit=${limit}`)
+    fetch(`http://localhost:3000/api/reviews?limit=${limit}`)
       .then((response) => response.json())
       .then((data) => {
         setReviews(data);

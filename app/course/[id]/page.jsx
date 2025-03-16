@@ -37,12 +37,13 @@ const CourseDetail = () => {
   } = useForm({
     defaultValues: {
       course: "",
-      date: new Date(),
+      date: new Date().toLocaleDateString("en-CA"),
       name: "",
       address: "",
       status: "Pending",
       phone: "",
       email: "",
+      status:"Pending",
       qualification: "",
       courseType: "Online",
     },
@@ -85,14 +86,14 @@ const CourseDetail = () => {
   const onSubmit = async (data) => {
     setSubmitting(true);
 
-    if (!data.name || !data.email || !data.phone || !data.address) {
+    if (!data.course || !data.email || !data.phone) {
       toast.error("Please fill in all required fields!");
       setSubmitting(false);
       return;
     }
 
     try {
-      const response = await fetch("/api/students", {
+      const response = await fetch("http://localhost:3000/api/students", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -266,7 +267,7 @@ const CourseDetail = () => {
                       {enquiryForm.map((item) => (
                         <div key={item.name}>
                           <label className="block mb-2">
-                            {item.label} <span className="text-red-500">*</span>
+                            {item.label} {item.validation && <span className="text-red-500">*</span>}
                           </label>
                           <input
                             {...register(item.name, item.validation)}
