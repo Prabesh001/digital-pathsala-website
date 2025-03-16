@@ -19,7 +19,6 @@ export default function EnrollmentForm() {
         console.error(error);
       }
     };
-
     getCourses();
   }, []);
 
@@ -31,28 +30,35 @@ export default function EnrollmentForm() {
     reset,
   } = useForm({
     defaultValues: {
-      fullName: "",
+      name: "",
+      date: new Date(),
       address: "",
-      mobileNumber: "",
+      phone: "",
       email: "",
       qualification: "",
       course: "",
+      status:"Pending"
     },
   });
 
   const onSubmit = async (data) => {
     setSubmitting(true);
-    const response = await postData("/api/students", data);
-    toast.isActive("Submitting")
+    toast.info("Submitting...");
 
-    if (response.error) {
-      toast.error(`Error occurred: ${response.error}`);
-    } else {
-      toast.success("Successfully submitted the form!");
-      reset();
-      setSelectedCourse({})
+    try {
+      const response = await postData("/api/students", data);
+      if (response.error) {
+        toast.error(`Error: ${response.error}`);
+      } else {
+        toast.success("Form submitted successfully!");
+        reset();
+        setSelectedCourse({});
+      }
+    } catch (error) {
+      toast.error("Submission failed. Try again.");
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   return (
@@ -62,9 +68,8 @@ export default function EnrollmentForm() {
         <div>
           <h1 className="text-2xl font-bold">Enrollment Form</h1>
           <p className="mt-2">
-            To register, kindly complete the form below. Every field with an{" "}
-            <b>Asterisks</b>(<span className="text-red-500">*</span>) must be{" "}
-            <b>filled out</b>.
+            Fields marked with (<span className="text-red-500">*</span>) are
+            required.
           </p>
         </div>
 
@@ -83,7 +88,15 @@ export default function EnrollmentForm() {
                     </label>
                     <input
                       id={field.name}
-                      {...register(field.name, field.validation)}
+                      {...register(field.name, {
+                        required: `${field.label} is required`,
+                        pattern: field.pattern
+                          ? {
+                              value: field.pattern,
+                              message: field.errorMessage,
+                            }
+                          : undefined,
+                      })}
                       className="w-full rounded-md border border-gray-400 focus:outline-blue-500 p-2"
                       placeholder={field.placeholder}
                       type={field.type || "text"}
@@ -103,15 +116,15 @@ export default function EnrollmentForm() {
               {/* Qualification Field */}
               <div className="flex flex-col">
                 <label htmlFor="qualification">
-                  Educational background <span className="text-red-500">*</span>
+                  Educational Background <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="qualification"
                   {...register("qualification", {
-                    required: "Educational background is required",
+                    required: "Select a qualification",
                   })}
                   className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
-                  readOnly={submitting}
+                  disabled={submitting}
                 >
                   <option value="">Select</option>
                   <option value="see">S.E.E</option>
@@ -134,9 +147,7 @@ export default function EnrollmentForm() {
                 </label>
                 <select
                   id="course"
-                  {...register("course", {
-                    required: "Course selection is required",
-                  })}
+                  {...register("course", { required: "Select a course" })}
                   className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
                   onChange={(e) => {
                     const course = myCourse.find(
@@ -144,7 +155,7 @@ export default function EnrollmentForm() {
                     );
                     setSelectedCourse(course || {});
                   }}
-                  readOnly={submitting}
+                  disabled={submitting}
                 >
                   <option value="" disabled>
                     Select
@@ -164,13 +175,14 @@ export default function EnrollmentForm() {
             </div>
           </div>
 
+          {/* Summary Section */}
           <div className="md:col-span-5 md:sticky top-40 z-10 pt-5">
             <div className="text-base border border-gray-400 p-5 rounded-md space-y-5 bg-white">
               <h5 className="font-semibold">Checkout Summary</h5>
               <div>
                 <h6 className="text-base font-semibold">Course</h6>
                 <span className="text-slate-500">
-                  {selectedCourse.name || "No course has been chosen"}
+                  {selectedCourse.name || "No course selected"}
                 </span>
               </div>
               <div className="text-slate-500 flex justify-between">
@@ -197,9 +209,12 @@ export default function EnrollmentForm() {
 
               <button
                 type="submit"
-                className={`bg-[var(--theme)] hover:bg-green-700 transition-all duration-300 w-full text-white py-2 rounded-md flex items-center justify-center gap-2`}
+                className={`bg-[var(--theme)] hover:bg-green-700 transition-all duration-300 w-full text-white py-2 rounded-md flex items-center justify-center gap-2 ${
+                  submitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={submitting}
               >
-                PROCEED TO CHECKOUT
+                {submitting ? "Submitting..." : "Proceed to Checkout"}
               </button>
             </div>
           </div>

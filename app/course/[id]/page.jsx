@@ -7,8 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FaArrowRight,
-  FaChevronDown,
-  FaChevronUp,
   FaCirclePlay,
   FaRegCircleCheck,
   FaRegClock,
@@ -16,9 +14,9 @@ import {
   FaRegSquareCheck,
   FaWallet,
 } from "react-icons/fa6";
-import { enquiryForm, requirements } from "@/utils/formData";
 import { toast, ToastContainer } from "react-toastify";
 import Loading from "@/components/Loading";
+import { enquiryForm, requirements } from "@/utils/formData";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -35,9 +33,11 @@ const CourseDetail = () => {
   } = useForm({
     defaultValues: {
       course: "",
-      classGroupId: "",
-      fullName: "",
+      date: new Date(),
+      name: "",
       address: "",
+      status: "Pending",
+      phone: "",
       email: "",
       qualification: "",
       courseType: "Online",
@@ -80,6 +80,13 @@ const CourseDetail = () => {
 
   const onSubmit = async (data) => {
     setSubmitting(true);
+
+    if (!data.name || !data.email || !data.phone || !data.address) {
+      toast.error("Please fill in all required fields!");
+      setSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/students", {
         method: "POST",
@@ -93,11 +100,11 @@ const CourseDetail = () => {
       if (!response.ok) {
         throw new Error(result.message || "Failed to create student");
       }
-      toast.success("Form submitted sucessfully!");
+      toast.success("Form submitted successfully!");
       reset();
     } catch (error) {
       console.log(error);
-      toast.error(`Form submission Failed. Please check your info carefully!`);
+      toast.error("Form submission failed. Please check your info carefully!");
     } finally {
       setSubmitting(false);
     }
@@ -107,7 +114,6 @@ const CourseDetail = () => {
 
   return (
     <>
-      {" "}
       {loading ? (
         <Loading />
       ) : (
@@ -211,7 +217,7 @@ const CourseDetail = () => {
                   {/* Requirements */}
                   <h5 className="text-xl font-semibold mb-4">Requirements</h5>
                   <div className="flex flex-col gap-4">
-                    {requirements.map((item, index) => (
+                    {requirements?.map((item, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <FaRegCircleCheck />
                         <span>{item}</span>
@@ -234,53 +240,28 @@ const CourseDetail = () => {
                         <label className="block mb-2">Course</label>
                         <input
                           {...register("course")}
-                          value={
-                            course && course.name ? course.name : "Loading..."
-                          }
+                          value={course?.name || "Loading..."}
                           className="w-full focus:outline-blue-500 p-2 border border-gray-400 rounded"
                           readOnly
                         />
                       </div>
 
-                      <div>
-                        <h6 className="mb-2 font-semibold">
-                          Course Type <span className="text-red-500">*</span>
-                        </h6>
-                        <div className="flex gap-4">
-                          <label className="flex items-center gap-2">
-                            <input
-                              {...register("courseType")}
-                              type="radio"
-                              value="Online"
-                              className="form-radio"
-                              disabled={submitting}
-                            />
-                            Online
-                          </label>
-                          <label className="flex items-center gap-2">
-                            <input
-                              {...register("courseType")}
-                              type="radio"
-                              value="Offline"
-                              className="form-radio"
-                              disabled={submitting}
-                            />
-                            Offline
-                          </label>
-                        </div>
-                      </div>
-
-                      {enquiryForm?.map((item) => (
+                      {enquiryForm.map((item) => (
                         <div key={item.name}>
                           <label className="block mb-2">
                             {item.label} <span className="text-red-500">*</span>
                           </label>
                           <input
-                            {...register(item.name)}
+                            {...register(item.name, item.validation)}
                             placeholder={item.placeholder}
                             className="w-full p-2 border focus:outline-blue-500 border-gray-400 rounded"
                             readOnly={submitting}
                           />
+                          {errors[item.name] && (
+                            <span className="text-red-600 text-sm">
+                              {errors[item.name]?.message}
+                            </span>
+                          )}
                         </div>
                       ))}
 
@@ -291,7 +272,7 @@ const CourseDetail = () => {
                           defaultValue={`I am interested in ${
                             course?.name || "this"
                           } class.`}
-                          {...register("message")}
+                          {...register("remarks")}
                           className="w-full min-h-10 p-2 border focus:outline-blue-500 border-gray-400 rounded"
                         />
                       </div>

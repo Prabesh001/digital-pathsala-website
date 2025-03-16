@@ -1,6 +1,6 @@
 export const formFields = [
   {
-    name: "fullName",
+    name: "name",
     label: "Full Name",
     placeholder: "Enter your full name",
     validation: { required: "Full name is required" },
@@ -12,7 +12,7 @@ export const formFields = [
     validation: { required: "Address is required" },
   },
   {
-    name: "mobileNumber",
+    name: "phone",
     label: "Mobile Number",
     placeholder: "Enter your Mobile number",
     type: "tel",
@@ -70,7 +70,7 @@ export const courses = [
 
 export const enquiryForm = [
   {
-    name: "fullName",
+    name: "name",
     label: "Full Name",
     placeholder: "Enter your full name",
     validation: { required: "Full name is required" },
@@ -82,7 +82,7 @@ export const enquiryForm = [
     validation: { required: "Address is required" },
   },
   {
-    name: "mobileNumber",
+    name: "phone",
     label: "Mobile Number",
     placeholder: "Enter your Mobile number",
     type: "tel",

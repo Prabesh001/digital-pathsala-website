@@ -15,7 +15,7 @@ const studentSchema = new mongoose.Schema(
       type: String,
       enum: ["Online", "Offline"],
     },
-    fullName: {
+    name: {
       type: String,
       required: [true, "Full name is required"],
       trim: true,
@@ -32,12 +32,12 @@ const studentSchema = new mongoose.Schema(
       required: [true, "Address is required"],
       trim: true,
     },
-    mobileNumber: {
+    phone: {
       type: String,
       required: [true, "Mobile number is required"],
       match: [/^\d{10}$/, "Invalid mobile number format"], // Ensuring 10-digit number
     },
-    message: {
+    remarks: {
       type: String,
       trim: true,
       default: "I am interested in this course.",
