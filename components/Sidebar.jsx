@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const Sidebar = ({ onClick, showSidebar }) => {
 
   useEffect(() => {
     const myPath = pathname.replace("/", " ").trim();
-    setSelectedIndex(myPath ? myPath : "home");
+    setSelectedIndex(myPath ? myPath.replaceAll("-"," ") : "home");
   }, [pathname]);
 
   console.log(selectedIndex);
@@ -90,8 +90,8 @@ const Sidebar = ({ onClick, showSidebar }) => {
         <ul className="space-y-4 text-lg">
           {options.map((item) => (
             <li key={item}>
-              <Link
-                href={item.replace(" ","-")}
+              <Link onClick={(prev) => showSidebar(!prev)}
+                href={item === "home" ? "/" : item.replaceAll(" ", "-")}
                 className={`capitalize hover:text-red-600 font-sans ${
                   item === selectedIndex ? "text-red-600" : ""
                 }`}

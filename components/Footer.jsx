@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { images } from "@/public/img";
-import { itSupport, paymentGateway, quickLinks, social } from "@/utils/data";
+import { itSupport, paymentGateway, quickLinks } from "@/utils/data";
 import SocialHandle from "./SocialHandle";
 
 const Footer = () => {

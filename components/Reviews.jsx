@@ -12,11 +12,11 @@ const Review = ({ image, name, review }) => {
     >
       <div className="flex flex-col justify-between rounded-md border border-neutral-300 bg-gray-100 p-8 shadow-sm max-w-sm">
         <div className="text-violet-500 flex gap-2">
-          <FaRegStar size={18}/>
-          <FaRegStar size={18}/>
-          <FaRegStar size={18}/>
-          <FaRegStar size={18}/>
-          <FaRegStar size={18}/>
+          <FaRegStar size={18} />
+          <FaRegStar size={18} />
+          <FaRegStar size={18} />
+          <FaRegStar size={18} />
+          <FaRegStar size={18} />
         </div>
 
         <p className="my-4 mb-0 text-base font-normal leading-relaxed tracking-wide text-gray-900">
@@ -89,14 +89,11 @@ const ReviewGrid = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
+      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-5">
         {reviews.map((r) => (
-          <Review
-            key={r._id}
-            image={r.image_url}
-            name={r.user}
-            review={r.review}
-          />
+          <div key={r._id} className="mb-6 break-inside-avoid">
+            <Review image={r.image_url} name={r.user} review={r.review} />
+          </div>
         ))}
       </div>
     </>

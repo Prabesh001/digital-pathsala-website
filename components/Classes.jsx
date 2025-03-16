@@ -123,7 +123,7 @@ const Classes = () => {
 
           <div className="hidden lg:block">
             <Link
-              href="https://codeit.com.np/popular-courses"
+              href="/course"
               className="px-4 bg-green-500 hover:bg-green-600 flex items-center gap-1 text-white transition-colors rounded-md py-2"
             >
               View All <FaArrowRight />

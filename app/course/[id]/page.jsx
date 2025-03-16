@@ -22,7 +22,7 @@ import Loading from "@/components/Loading";
 
 const CourseDetail = () => {
   const { id } = useParams();
-  const [course, setCourse] = useState({});
+  const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -69,6 +69,15 @@ const CourseDetail = () => {
     fetchCourseData();
   }, [id]);
 
+  useEffect(() => {
+    if (course) {
+      reset((prevValues) => ({
+        ...prevValues,
+        course: course.name || "",
+      }));
+    }
+  }, [course, reset]);
+
   const onSubmit = async (data) => {
     setSubmitting(true);
     try {
@@ -109,11 +118,21 @@ const CourseDetail = () => {
               <div className="md:flex gap-10 space-y-5 items-center justify-between py-10">
                 <div className="relative z-0 md:order-1 flex justify-center">
                   <Image
-                    src={course?.image_url || "/fallback-image.jpg"}
+                    src={
+                      course?.image_url ||
+                      "https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-6/460090012_384318108058460_2859429638930545486_n.png?stp=dst-png_s960x960&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=jKGyXvaqSBUQ7kNvgEqjM4e&_nc_oc=AdjUp8JOveS0baohIpRhZrD7rRsU6aHwIjB-znXuubs8OlyBoKJHgwOu4rO52en1VvnYrtKIilwxLHumd2ZL4bys&_nc_zt=23&_nc_ht=scontent.fktm19-1.fna&_nc_gid=m4CLTdhKGtdCeFt5iNmP3g&oh=00_AYGBFOuANYw70tFRJVgMHQkOy0gAfH32Epw4DPhKgtElzQ&oe=67DBDA16"
+                    }
                     alt={course?.name || "Course Image"}
                     width={400}
                     height={300}
                     className="h-[220px] z-[-10] object-contain rounded-lg"
+                  />
+                  <Image
+                    src={"https://codeit.com.np/asset/img/shadow.webp"}
+                    alt={course?.name || "Course Image"}
+                    width={300}
+                    height={300}
+                    className="absolute top-0 z-[-20] scale-[1.3]"
                   />
                 </div>
 
@@ -215,7 +234,9 @@ const CourseDetail = () => {
                         <label className="block mb-2">Course</label>
                         <input
                           {...register("course")}
-                          defaultValue={course?.name}
+                          value={
+                            course && course.name ? course.name : "Loading..."
+                          }
                           className="w-full focus:outline-blue-500 p-2 border border-gray-400 rounded"
                           readOnly
                         />
@@ -232,6 +253,7 @@ const CourseDetail = () => {
                               type="radio"
                               value="Online"
                               className="form-radio"
+                              disabled={submitting}
                             />
                             Online
                           </label>
@@ -241,6 +263,7 @@ const CourseDetail = () => {
                               type="radio"
                               value="Offline"
                               className="form-radio"
+                              disabled={submitting}
                             />
                             Offline
                           </label>
@@ -256,6 +279,7 @@ const CourseDetail = () => {
                             {...register(item.name)}
                             placeholder={item.placeholder}
                             className="w-full p-2 border focus:outline-blue-500 border-gray-400 rounded"
+                            readOnly={submitting}
                           />
                         </div>
                       ))}

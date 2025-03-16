@@ -55,8 +55,8 @@ const studentSchema = new mongoose.Schema(
       type: String,
     },
   },
-  { timestamps: true}
+  { timestamps: true, collection: "Students" }
 );
 
-const Student = models.Student || model("Students", studentSchema);
-export default Student;
+const Students = models.Students || model("Students", studentSchema);
+export default Students;

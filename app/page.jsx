@@ -56,7 +56,7 @@ const Home = () => {
 
       <div className="counter-text bg-gray-800 flex justify-around items-center  py-16 relative">
         <div className="hidden lg:block">
-          <Image src={"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-6/460090012_384318108058460_2859429638930545486_n.png?stp=dst-png_s960x960&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=jKGyXvaqSBUQ7kNvgGe2_1i&_nc_oc=AdjPrmf3Jmk59eHeIizFcOTR1B6f7FwNh37hne27z9dGJfIc-JTV9XSog8n66iUTykI0JQMgxJEFxjJaA8ieumZo&_nc_zt=23&_nc_ht=scontent.fktm19-1.fna&_nc_gid=fN_moDqGqM77W0R7NVlA9g&oh=00_AYHm9J7beNLunAdWGQDPlkMaR1BZ9Aw3lwmsOxjmk5pkEg&oe=67DBA1D6"}
+          <Image className="rounded-lg" src={"https://scontent.fktm19-1.fna.fbcdn.net/v/t39.30808-6/460090012_384318108058460_2859429638930545486_n.png?stp=dst-png_s960x960&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=jKGyXvaqSBUQ7kNvgGe2_1i&_nc_oc=AdjPrmf3Jmk59eHeIizFcOTR1B6f7FwNh37hne27z9dGJfIc-JTV9XSog8n66iUTykI0JQMgxJEFxjJaA8ieumZo&_nc_zt=23&_nc_ht=scontent.fktm19-1.fna&_nc_gid=fN_moDqGqM77W0R7NVlA9g&oh=00_AYHm9J7beNLunAdWGQDPlkMaR1BZ9Aw3lwmsOxjmk5pkEg&oe=67DBA1D6"}
           alt="Cover Photo" height={400} width={700}/>
         </div>
         <div className="relative items-center text-center">

@@ -94,6 +94,19 @@ export const enquiryForm = [
       },
     },
   },
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email address",
+    type: "email",
+    validation: {
+      required: "Email is required",
+      pattern: {
+        value: /^\S+@\S+$/i,
+        message: "Invalid email address",
+      },
+    },
+  },
 ];
 
 export const materials = [
