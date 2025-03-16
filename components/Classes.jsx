@@ -4,96 +4,12 @@ import { useEffect, useState } from "react";
 import { FaArrowRight, FaStar } from "react-icons/fa6";
 
 const Classes = () => {
-  // const courses = [
-  //   {
-  //     id: 1,
-  //     title: "Web Design Course",
-  //     href: "https://codeit.com.np/course/web-design-course",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRA9TM148GC7YW7VK2NT3Q0.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "UI/UX Certification",
-  //     href: "https://codeit.com.np/course/uiux-certification",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRACXKAFF46V2VBN8CPXFTW.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Web Design Course",
-  //     href: "https://codeit.com.np/course/web-design-course",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRA9TM148GC7YW7VK2NT3Q0.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "UI/UX Certification",
-  //     href: "https://codeit.com.np/course/uiux-certification",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRACXKAFF46V2VBN8CPXFTW.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Web Design Course",
-  //     href: "https://codeit.com.np/course/web-design-course",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRA9TM148GC7YW7VK2NT3Q0.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "UI/UX Certification",
-  //     href: "https://codeit.com.np/course/uiux-certification",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRACXKAFF46V2VBN8CPXFTW.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "Web Design Course",
-  //     href: "https://codeit.com.np/course/web-design-course",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRA9TM148GC7YW7VK2NT3Q0.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 8,
-  //     title: "UI/UX Certification",
-  //     href: "https://codeit.com.np/course/uiux-certification",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRACXKAFF46V2VBN8CPXFTW.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  //   {
-  //     id: 9,
-  //     title: "UI/UX Certification",
-  //     href: "https://codeit.com.np/course/uiux-certification",
-  //     imageSrc: "https://codeit.com.np/storage/01JJRACXKAFF46V2VBN8CPXFTW.avif",
-  //     duration: "14 Days | 1.5 Hours per Day",
-  //     price: "999",
-  //     rating: "5",
-  //   },
-  // ];
-
+  
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Define the limit or leave it out to use the default 10
     const limit = 9;
     fetch(`/api/courses?limit=${limit}`)
       .then((response) => response.json())
