@@ -19,6 +19,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Loading from "@/components/Loading";
 import { enquiryForm, requirements } from "@/utils/formData";
 import AccordianGroup from "@/components/Accordian";
+import { CircularProgress } from "@mui/material";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -43,7 +44,7 @@ const CourseDetail = () => {
       status: "Pending",
       phone: "",
       email: "",
-      status:"Pending",
+      status: "Pending",
       qualification: "",
       courseType: "Online",
     },
@@ -267,7 +268,10 @@ const CourseDetail = () => {
                       {enquiryForm.map((item) => (
                         <div key={item.name}>
                           <label className="block mb-2">
-                            {item.label} {item.validation && <span className="text-red-500">*</span>}
+                            {item.label}{" "}
+                            {item.validation && (
+                              <span className="text-red-500">*</span>
+                            )}
                           </label>
                           <input
                             {...register(item.name, item.validation)}
@@ -299,7 +303,13 @@ const CourseDetail = () => {
                         type="submit"
                         className="w-full flex items-center justify-center gap-1 bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition-colors"
                       >
-                        Submit Enquiry <FaArrowRight />
+                        {submitting ? (
+                          <CircularProgress size={14} />
+                        ) : (
+                          <>
+                            Submit Enquiry <FaArrowRight />
+                          </>
+                        )}
                       </button>
                     </form>
                   </div>

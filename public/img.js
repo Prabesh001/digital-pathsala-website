@@ -5,5 +5,15 @@ import bank from "@/public/assets/bank.png";
 import smartphone from "@/public/assets/smartphone.png";
 import esewa from "@/public/assets/esewa.png";
 import poster from "@/public/assets/dp-poster.jpg";
+import videoBg from "@/public/assets/video_bg.png";
 
-export const images = { icon, logo, khalti, esewa,poster, smartphone, bank };
+export const images = {
+  icon,
+  logo,
+  khalti,
+  esewa,
+  poster,
+  smartphone,
+  bank,
+  videoBg,
+};
