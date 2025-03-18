@@ -7,7 +7,7 @@ const VideoSection = () => {
   return (
     <section className="bg-[#212529] p-10">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-[minmax(280px,1fr)_1fr] gap-16 items-center justify-center">
+        <div className="grid md:grid-cols-[minmax(280px,1fr)_1fr] gap-16 items-center justify-center">
           <div className="w-full">
             <div className="rounded-md relative aspect-video">
               <Image
@@ -77,4 +77,3 @@ const VideoComp = ({url}) => {
 };
 export default VideoSection;
 
-// export default VideoComponent;

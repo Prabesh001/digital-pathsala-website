@@ -6,9 +6,11 @@ import smartphone from "@/public/assets/smartphone.png";
 import esewa from "@/public/assets/esewa.png";
 import poster from "@/public/assets/dp-poster.jpg";
 import videoBg from "@/public/assets/video_bg.png";
+import collage from "@/public/assets/collage.png";
 
 export const images = {
   icon,
+  collage,
   logo,
   khalti,
   esewa,

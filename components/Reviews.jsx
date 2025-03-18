@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaArrowRight, FaRegStar, FaStar } from "react-icons/fa6";
+import { FaArrowRight, FaStar } from "react-icons/fa6";
 
 const Review = ({ image, name, review }) => {
   return (
@@ -12,7 +12,7 @@ const Review = ({ image, name, review }) => {
     >
       <div className="flex flex-col justify-between rounded-md border border-neutral-300 bg-gray-100 p-8 shadow-sm max-w-sm">
         <div className="text-violet-500 flex gap-2">
-          {[...Array(5)].map((_,i)=><FaRegStar key={i} size={18} />)}
+          {[...Array(5)].map((_,i)=><FaStar key={i} color="#eaef10" size={18} />)}
           
         </div>
 

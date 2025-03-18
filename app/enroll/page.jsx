@@ -3,18 +3,25 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { getData, postData } from "@/utils/api";
 import { formFields } from "@/utils/formData";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { CircularProgress } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function EnrollmentForm() {
   const [myCourse, setMyCourse] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     const getCourses = async () => {
       try {
         const data = await getData("http://localhost:3000/api/courses");
         setMyCourse(data);
+        if (data.length > 0) {
+          setSelectedCourse(data[0]); // Ensure first course is selected
+        }
       } catch (error) {
         console.error(error);
       }
@@ -22,13 +29,10 @@ export default function EnrollmentForm() {
     getCourses();
   }, []);
 
-  console.log(myCourse);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
   } = useForm({
     defaultValues: {
@@ -38,34 +42,50 @@ export default function EnrollmentForm() {
       phone: "",
       email: "",
       qualification: "see",
-      course: myCourse[0]?.name,
+      course: myCourse[0]?.name || "",
       status: "Pending",
-      courseType: "Online",
       remarks: "I am interested in this class.",
     },
   });
 
   const onSubmit = async (data) => {
-    setSubmitting(true);
-    toast.info("Submitting...");
+    // setSubmitting(true);
 
-    try {
-      const response = await postData(
-        "http://localhost:3000/api/students",
-        data
-      );
-      if (response.error) {
-        toast.error(`Error: ${response.error}`);
-      } else {
-        toast.success("Form submitted successfully!");
-        reset();
-        setSelectedCourse({});
-      }
-    } catch (error) {
-      toast.error("Submission failed. Try again.");
-    } finally {
-      setSubmitting(false);
-    }
+    // try {
+    //   const response = await postData(
+    //     "http://localhost:3000/api/students",
+    //     data
+    //   );
+    //   if (response.error) {
+    //     toast.error(`Error: ${response.error}`);
+    //   } else {
+    //     toast.success("Form submitted successfully!");
+    //     reset();
+    //     setSelectedCourse({});
+    //   }
+    // } catch (error) {
+    //   toast.error("Submission failed. Try again.");
+    // } finally {
+    //   setSubmitting(false);
+    // }
+
+    await fetch("http://localhost:3000/api/generate-token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({...data, price:selectedCourse.price}),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+          router.push("/payment-process");
+        } else {
+          console.error("Token generation failed:", result.error);
+        }
+      })
+      .catch((err) => console.error("Request failed", err));
   };
 
   return (
@@ -143,15 +163,12 @@ export default function EnrollmentForm() {
                   className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
                   onChange={(e) => {
                     const course = myCourse.find(
-                      (c) => c._id === e.target.value
+                      (c) => c.name === e.target.value
                     );
                     setSelectedCourse(course || {});
                   }}
                   disabled={submitting}
                 >
-                  <option value="" disabled>
-                    Select
-                  </option>
                   {myCourse.map((course) => (
                     <option key={course._id} value={course.name}>
                       {course.name}
@@ -192,14 +209,6 @@ export default function EnrollmentForm() {
                 <span>Duration</span>
                 <span>{selectedCourse.duration || "N/A"}</span>
               </div>
-              <div className="text-slate-500 flex justify-between">
-                <span>Sub Total</span>
-                <span>
-                  {selectedCourse.price
-                    ? `Rs.${selectedCourse.price}/-`
-                    : "Rs.0/-"}
-                </span>
-              </div>
 
               <div className="font-bold flex justify-between">
                 <span>Total Fee</span>
@@ -217,7 +226,13 @@ export default function EnrollmentForm() {
                 }`}
                 disabled={submitting}
               >
-                {submitting ? "Submitting..." : "Proceed to Checkout"}
+                {submitting ? (
+                  <div className="flex items-center gap-2">
+                    <CircularProgress size={14} color="white" /> Submitting...
+                  </div>
+                ) : (
+                  "Proceed to Checkout"
+                )}
               </button>
             </div>
           </div>

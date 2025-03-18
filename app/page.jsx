@@ -11,12 +11,12 @@ const Home = () => {
   const router = useRouter();
   return (
     <>
-      <section className="p-10 lg:px-20">
+      <section className="p-10">
         <div className="container">
           <div className="grid md:grid-cols-2 items-center gap-5 md:gap-10">
             <div className="md:order-1">
               <Image
-                src={images.poster}
+                src={images.collage}
                 alt="Digital Pathsala Hero Image"
                 className="w-full rounded-md"
                 height={500}

@@ -41,12 +41,10 @@ const CourseDetail = () => {
       date: new Date().toLocaleDateString("en-CA"),
       name: "",
       address: "",
-      status: "Pending",
+      status: "Follow Up",
       phone: "",
       email: "",
-      status: "Pending",
       qualification: "",
-      courseType: "Online",
     },
   });
 

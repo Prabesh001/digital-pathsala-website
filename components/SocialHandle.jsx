@@ -5,7 +5,7 @@ const SocialHandle = () => (
   <ul className="flex gap-2">
     {social.map((platform) => (
       <li key={platform.site} className={platform.color}>
-        <Link href="#" aria-label={platform.site}>
+        <Link href={platform.href} aria-label={platform.site}>
           {platform.icon}
           <span className="sr-only">{platform.site}</span>
         </Link>
@@ -14,4 +14,4 @@ const SocialHandle = () => (
   </ul>
 );
 
-export default SocialHandle
+export default SocialHandle;
