@@ -11,9 +11,9 @@ const GalleryItem = ({ image, title }) => {
         src={image}
         alt={title}
         title={title}
-        width={500} // Adjust for better responsiveness
-        height={300} // Adjust for better responsiveness
-        className="w-full h-auto rounded-lg"
+        width={500}
+        height={300}
+        className="w-full h-auto transition-all duration-500 hover:scale-110 rounded-lg"
         priority={false}
       />
     </div>
@@ -52,7 +52,7 @@ const GallerySection = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div className="flex justify-end">
         <a
           href="https://www.facebook.com/digitalpathshala999/photos"
           className="bg-green-600 flex items-center gap-1 w-max hover:bg-green-700 mt-5 text-white px-2 py-3 rounded-md"

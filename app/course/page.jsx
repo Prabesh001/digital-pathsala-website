@@ -1,7 +1,5 @@
 "use client";
 import CourseGrid from "@/components/CourseGrid";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa6";
 
 const Courses = () => {
   return (

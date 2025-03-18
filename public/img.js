@@ -7,10 +7,12 @@ import esewa from "@/public/assets/esewa.png";
 import poster from "@/public/assets/dp-poster.jpg";
 import videoBg from "@/public/assets/video_bg.png";
 import collage from "@/public/assets/collage.png";
+import shadow from "@/public/assets/shadow.png";
 
 export const images = {
   icon,
   collage,
+  shadow,
   logo,
   khalti,
   esewa,

@@ -65,7 +65,7 @@ const GallerySection = () => {
                   alt={item.alt}
                   height={500}
                   width={500}
-                  className="w-full hover:scale-105 h-full duration-200 object-contain rounded-lg shadow-md"
+                  className="w-full hover:scale-105 h-full duration-200 object-cover rounded-lg shadow-md"
                   loading="lazy"
                 />
               </a>

@@ -20,6 +20,7 @@ import Loading from "@/components/Loading";
 import { enquiryForm, requirements } from "@/utils/formData";
 import AccordianGroup from "@/components/Accordian";
 import { CircularProgress } from "@mui/material";
+import { images } from "@/public/img";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -122,7 +123,7 @@ const CourseDetail = () => {
         <div>
           <section className="bg-gray-800 text-white">
             <ToastContainer />
-            <div className="container px-12">
+            <div className=" px-12">
               <div className="md:flex gap-10 space-y-5 items-center justify-between py-10">
                 <div className="relative z-0 md:order-1 flex justify-center">
                   <Image
@@ -136,7 +137,7 @@ const CourseDetail = () => {
                     className="h-[220px] z-[-10] object-contain rounded-lg"
                   />
                   <Image
-                    src={"https://codeit.com.np/asset/img/shadow.webp"}
+                    src={images.shadow}
                     alt={course?.name || "Course Image"}
                     width={300}
                     height={300}
@@ -175,7 +176,10 @@ const CourseDetail = () => {
 
                   <div className="flex gap-2 items-center">
                     <Link
-                      href={course?.demo_video_url || "#"}
+                      href={
+                        course?.demo_video_url ||
+                        "https://www.youtube.com/watch?v=nrTtgxneme8"
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 border-2 border-white rounded-full p-1 pr-4"

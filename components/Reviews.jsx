@@ -1,77 +1,49 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import React from "react";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+
+import useFetch from "@/utils/useFetch";
 import { FaArrowRight, FaStar } from "react-icons/fa6";
 
-const Review = ({ image, name, review }) => {
+function Review({ image, name, review }) {
   return (
-    <Link
-      href="https://www.facebook.com/digitalpathshala999/reviews"
-      target="_blank"
-    >
-      <div className="flex flex-col justify-between rounded-md border border-neutral-300 bg-gray-100 p-8 shadow-sm max-w-sm">
-        <div className="text-violet-500 flex gap-2">
+    <Card sx={{ maxWidth: 345 }}>
+      <CardHeader
+        avatar={
+          <Avatar src={image} aria-label="image" /> || (
+            <Avatar sx={{ bgcolor: "green" }} aria-label="profileImage">
+              {name.charAt(0)}
+            </Avatar>
+          )
+        }
+        title={name}
+      />
+      <div className="px-4 flex gap-1">
           {[...Array(5)].map((_, i) => (
-            <FaStar key={i} color="#eaef10" size={18} />
+            <FaStar key={i} color="#F5C518" size={18} />
           ))}
         </div>
-
-        <p className="my-4 mb-0 text-base font-normal leading-relaxed tracking-wide text-gray-900">
+      <CardContent>
+        <Typography variant="body2" sx={{ color: "gray" }}>
           {review}
-        </p>
-
-        <div className="mt-6 flex items-center gap-6">
-          <div className="h-10 w-10 overflow-hidden rounded-full shadow-sm outline-neutral-200">
-            <div className="relative inline-block overflow-hidden rounded-lg border-neutral-200">
-              <Image
-                alt="image"
-                src={image}
-                width={50}
-                height={50}
-                className="inline-block text-transparent"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <div className="max-w-[200px]">
-            <p
-              title={name}
-              className="overflow-hidden text-gray-700 leading-relaxed tracking-wide text-ellipsis whitespace-nowrap"
-            >
-              {name.length > 15 ? name.substring(0, 15) + "..." : name}
-            </p>
-            <p className="text-xs leading-relaxed tracking-wide text-gray-600">
-              Student
-            </p>
-          </div>
-        </div>
-      </div>
-    </Link>
+        </Typography>
+      </CardContent>
+    </Card>
   );
-};
+}
 
 const ReviewGrid = () => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const limit = 9;
-    fetch(`http://localhost:3000/api/reviews?limit=${limit}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setReviews(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Failed to fetch data");
-        setLoading(false);
-      });
-  }, []);
+  const { data, loading, error } = useFetch(
+    "http://localhost:3000/api/reviews",
+    9
+  );
 
   return (
-    <div className= "p-5 bg-gray-100">
+    <div className="p-5 bg-gray-100">
       <div className="px-5 pt-5">
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">
@@ -90,8 +62,8 @@ const ReviewGrid = () => {
           </div>
         </div>
       </div>
-      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-5">
-        {reviews.map((r) => (
+      <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-6 p-5">
+        {data?.map((r) => (
           <div key={r._id} className="mb-6 break-inside-avoid">
             <Review image={r.image_url} name={r.user} review={r.review} />
           </div>

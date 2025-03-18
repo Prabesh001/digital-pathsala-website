@@ -6,7 +6,7 @@ import React from "react";
 const VideoSection = () => {
   return (
     <section className="bg-[#212529] p-10">
-      <div className="container">
+      <div >
         <div className="grid md:grid-cols-[minmax(280px,1fr)_1fr] gap-16 items-center justify-center">
           <div className="w-full">
             <div className="rounded-md relative aspect-video">

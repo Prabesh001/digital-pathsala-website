@@ -8,7 +8,7 @@ import PaymentSection from "./PaymentSection";
 
 const Footer = () => {
   return (
-    <footer id="aboutus" className="py-10 px-10 bg-[#61927a1f]">
+    <footer id="aboutus" className="py-10 overflow-hidden px-10 border-t border-gray-300 bg-[#61927a1f]">
       <div>
         <div className="grid md:grid-cols-2  lg:grid-cols-12 gap-5 gap-x-12  border-b border-gray-400 pb-5">
          
@@ -73,7 +73,7 @@ const Footer = () => {
               <div key={index} className="flex flex-col">
                 <strong>{section.title}</strong>
                 {section.links.map((link) => (
-                  <span key={link.app} className="flex gap-1 items-center">
+                  <span key={link.app} className="flex flex-wrap gap-1 items-center">
                     {link.icon}
                     <span className="capitalize">
                       {link.app.replace("-", " ")}

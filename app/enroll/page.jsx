@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { getData, postData } from "@/utils/api";
+import { getData } from "@/utils/api";
 import { formFields } from "@/utils/formData";
 import { ToastContainer } from "react-toastify";
 import { CircularProgress } from "@mui/material";
@@ -19,9 +19,6 @@ export default function EnrollmentForm() {
       try {
         const data = await getData("http://localhost:3000/api/courses");
         setMyCourse(data);
-        if (data.length > 0) {
-          setSelectedCourse(data[0]); // Ensure first course is selected
-        }
       } catch (error) {
         console.error(error);
       }
@@ -42,65 +39,53 @@ export default function EnrollmentForm() {
       phone: "",
       email: "",
       qualification: "see",
-      course: myCourse[0]?.name || "",
-      status: "Pending",
+      course: "",
+      status: "Follow Up",
       remarks: "I am interested in this class.",
     },
   });
 
   const onSubmit = async (data) => {
-    // setSubmitting(true);
+    setSubmitting(true);
+    try {
+      const response = await fetch("http://localhost:3000/api/generate-token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, price: selectedCourse.price }),
+      });
 
-    // try {
-    //   const response = await postData(
-    //     "http://localhost:3000/api/students",
-    //     data
-    //   );
-    //   if (response.error) {
-    //     toast.error(`Error: ${response.error}`);
-    //   } else {
-    //     toast.success("Form submitted successfully!");
-    //     reset();
-    //     setSelectedCourse({});
-    //   }
-    // } catch (error) {
-    //   toast.error("Submission failed. Try again.");
-    // } finally {
-    //   setSubmitting(false);
-    // }
+      const result = await response.json();
 
-    await fetch("http://localhost:3000/api/generate-token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({...data, price:selectedCourse.price}),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.token) {
-          localStorage.setItem("token", result.token);
-          router.push("/payment-process");
-        } else {
-          console.error("Token generation failed:", result.error);
-        }
-      })
-      .catch((err) => console.error("Request failed", err));
+      if (response.ok && result.token) {
+        localStorage.setItem("token", result.token);
+        router.push("/payment-process");
+      } else {
+        console.error(
+          "Token generation failed:",
+          result.error || "Unknown error"
+        );
+      }
+    } catch (error) {
+      console.error("Request failed", error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <section className="w-[86%] mx-auto py-10">
       <ToastContainer />
+      <div>
+        <h1 className="text-2xl font-bold">Enrollment Form</h1>
+        <p className="mt-2">
+          Fields marked with (<span className="text-red-500">*</span>) are
+          required.
+        </p>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <div>
-          <h1 className="text-2xl font-bold">Enrollment Form</h1>
-          <p className="mt-2">
-            Fields marked with (<span className="text-red-500">*</span>) are
-            required.
-          </p>
-        </div>
-
-        <div className="pt-5 grid md:grid-cols-12 gap-10 md:gap-20">
+        <div className="flex gap-5 flex-wrap">
           <div className="md:col-span-7 space-y-5">
             {/* Personal Details Field */}
             <div>
@@ -169,6 +154,9 @@ export default function EnrollmentForm() {
                   }}
                   disabled={submitting}
                 >
+                  <option key="1" value="" disabled>
+                    Select
+                  </option>
                   {myCourse.map((course) => (
                     <option key={course._id} value={course.name}>
                       {course.name}
@@ -196,7 +184,7 @@ export default function EnrollmentForm() {
           </div>
 
           {/* Summary Section */}
-          <div className="md:col-span-5 md:sticky top-40 z-10 pt-5">
+          <div className="flex-1 max-w-200 min-w-80 md:sticky top-40 z-10 pt-5">
             <div className="text-base border border-gray-400 p-5 rounded-md space-y-5 bg-white">
               <h5 className="font-semibold">Checkout Summary</h5>
               <div>

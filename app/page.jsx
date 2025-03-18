@@ -2,6 +2,7 @@
 import Classes from "@/components/Classes";
 import GallerySection from "@/components/GallerySection";
 import InternPartner from "@/components/InternPartner";
+import InternSection from "@/components/InternSection";
 import ReviewGrid from "@/components/Reviews";
 import VideoComponent from "@/components/VideoComponent";
 import { images } from "@/public/img";
@@ -66,6 +67,8 @@ const Home = () => {
       <InternPartner/>
 
       <ReviewGrid />
+
+      <InternSection/>
     </>
   );
 };
