@@ -8,10 +8,10 @@ import PaymentSection from "./PaymentSection";
 
 const Footer = () => {
   return (
-    <footer className="py-10 px-10 bg-[#61927a1f]">
-      <div className="container">
-        <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-5 border-b border-gray-400 pb-5">
-          {/* Company Info Section */}
+    <footer id="aboutus" className="py-10 px-10 bg-[#61927a1f]">
+      <div>
+        <div className="grid md:grid-cols-2  lg:grid-cols-12 gap-5 gap-x-12  border-b border-gray-400 pb-5">
+         
           <div className="space-y-2 lg:col-span-3">
             <div>
               <Image
@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* Payment Methods Section */}
 
-          <PaymentSection handleEsewa={()=>{console.log("Esewa")}} handleMobile={()=>{console.log("Mobile Banking")}}/>
+          <PaymentSection />
 
           {/* Support Section */}
           <div className="space-y-2 lg:col-span-3">

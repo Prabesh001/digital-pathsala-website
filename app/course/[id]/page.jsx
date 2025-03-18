@@ -28,8 +28,6 @@ const CourseDetail = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  console.log(course);
-
   const {
     register,
     handleSubmit,

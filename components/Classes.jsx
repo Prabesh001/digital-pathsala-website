@@ -23,11 +23,9 @@ const Classes = () => {
       });
   }, []);
 
-  console.log(courses)
-
   return (
     <section className="mx-auto p-10">
-      <div className="container space-y-5">
+      <div className="space-y-5">
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">
             <h1 className="text-2xl font-bold">
@@ -90,7 +88,7 @@ const Classes = () => {
           ))}
         </div>
 
-        <div className="text-center lg:hidden mb-5">
+        <div className="text-center w-fit lg:hidden mb-5">
           <Link
             href="/course"
             className="px-4 bg-green-500 hover:bg-green-600 flex items-center gap-1 text-white transition-colors rounded-md py-2"

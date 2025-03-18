@@ -1,5 +1,7 @@
 "use client";
 import Classes from "@/components/Classes";
+import GallerySection from "@/components/GallerySection";
+import InternPartner from "@/components/InternPartner";
 import ReviewGrid from "@/components/Reviews";
 import VideoComponent from "@/components/VideoComponent";
 import { images } from "@/public/img";
@@ -11,8 +13,8 @@ const Home = () => {
   const router = useRouter();
   return (
     <>
-      <section className="p-10">
-        <div className="container">
+      <section className="p-10 flex justify-center">
+        <div>
           <div className="grid md:grid-cols-2 items-center gap-5 md:gap-10">
             <div className="md:order-1">
               <Image
@@ -58,6 +60,10 @@ const Home = () => {
       <VideoComponent />
 
       <Classes />
+
+      <GallerySection/>
+
+      <InternPartner/>
 
       <ReviewGrid />
     </>

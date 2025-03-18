@@ -7,7 +7,7 @@ import { FaPhone, FaRegEnvelope, FaWhatsapp, FaX } from "react-icons/fa6";
 import { images } from "@/public/img";
 import { usePathname } from "next/navigation";
 
-const Sidebar = ({ onClick, showSidebar }) => {
+const Sidebar = ({ onClick,setShowSidebar, showSidebar }) => {
   const [selectedIndex, setSelectedIndex] = useState("home");
 
   const pathname = usePathname();
@@ -19,12 +19,9 @@ const Sidebar = ({ onClick, showSidebar }) => {
 
   const options = [
     "home",
-    "about us",
     "voice of students",
     "gallery",
-    "blogs",
-    "events",
-    "contact us",
+    "about us",
   ];
 
   useEffect(() => {
@@ -89,8 +86,8 @@ const Sidebar = ({ onClick, showSidebar }) => {
         <ul className="space-y-4 text-lg">
           {options.map((item) => (
             <li key={item}>
-              <Link onClick={(prev) => showSidebar(!prev)}
-                href={item === "home" ? "/" : item.replaceAll(" ", "-")}
+              <Link onClick={(prev) => setShowSidebar(!prev)}
+                href={item === "home" ? "/" : item === "about us" ? "#aboutus" : item.replaceAll(" ", "-")}
                 className={`capitalize hover:text-red-600 font-sans ${
                   item === selectedIndex ? "text-red-600" : ""
                 }`}
