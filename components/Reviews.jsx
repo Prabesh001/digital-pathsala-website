@@ -43,7 +43,7 @@ const ReviewGrid = () => {
   );
 
   return (
-    <div className="p-5 bg-gray-100">
+    <div className="p-0 sm:px-6 bg-gray-100">
       <div className="px-5 pt-5">
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">

@@ -8,7 +8,7 @@ import PaymentSection from "./PaymentSection";
 
 const Footer = () => {
   return (
-    <footer id="aboutus" className="py-10 overflow-hidden px-10 border-t border-gray-300 bg-[#61927a1f]">
+    <footer id="aboutus" className="p-4 sm:p-10 overflow-hidden border-t border-gray-300 bg-[#61927a1f]">
       <div>
         <div className="grid md:grid-cols-2  lg:grid-cols-12 gap-5 gap-x-12  border-b border-gray-400 pb-5">
          

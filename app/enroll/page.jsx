@@ -75,7 +75,7 @@ export default function EnrollmentForm() {
   };
 
   return (
-    <section className="w-[86%] mx-auto py-10">
+    <section className="w-[86%] p-4 sm:p-10">
       <ToastContainer />
       <div>
         <h1 className="text-2xl font-bold">Enrollment Form</h1>
@@ -94,7 +94,7 @@ export default function EnrollmentForm() {
               </h5>
               <div className="mt-2 grid md:grid-cols-2 gap-4">
                 {formFields.map((field) => (
-                  <div key={field.name}>
+                  <div key={field.name} className="flex flex-col">
                     <label htmlFor={field.name}>
                       {field.label}{" "}
                       {field.validation && (
@@ -104,7 +104,7 @@ export default function EnrollmentForm() {
                     <input
                       id={field.name}
                       {...register(field.name, field.validation || {})}
-                      className="w-full rounded-md border border-gray-400 focus:outline-blue-500 p-2"
+                      className="w-[250px] sm:w-full rounded-md border border-gray-400 focus:outline-blue-500 p-2"
                       placeholder={field.placeholder}
                       type={field.type || "text"}
                       readOnly={submitting}
@@ -145,7 +145,7 @@ export default function EnrollmentForm() {
                 <select
                   id="course"
                   {...register("course", { required: "Select a course" })}
-                  className="w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
+                  className="w-[250px] sm:w-max rounded-md border border-gray-400 p-2 focus:outline-blue-500"
                   onChange={(e) => {
                     const course = myCourse.find(
                       (c) => c.name === e.target.value
@@ -170,7 +170,7 @@ export default function EnrollmentForm() {
                 )}
               </div>
 
-              <div className="w-full -mt-4">
+              <div className="w-[250px] sm:w-full -mt-4">
                 <label htmlFor="remark">Message</label>
                 <textarea
                   id="remark"
@@ -184,8 +184,8 @@ export default function EnrollmentForm() {
           </div>
 
           {/* Summary Section */}
-          <div className="flex-1 max-w-200 min-w-80 md:sticky top-40 z-10 pt-5">
-            <div className="text-base border border-gray-400 p-5 rounded-md space-y-5 bg-white">
+          <div className="sm:flex-1 max-w-200 min-w-65 sm:min-w-80 md:sticky top-40 z-10 pt-5">
+            <div className="text-base border border-gray-400 p-5 rounded-md space-y-2 sm:space-y-5 bg-white">
               <h5 className="font-semibold">Checkout Summary</h5>
               <div>
                 <h6 className="text-base font-semibold">Course</h6>

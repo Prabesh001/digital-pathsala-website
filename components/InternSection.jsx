@@ -37,9 +37,9 @@ export default function Carousel() {
         },
       },
       {
-        breakpoint: 640, // For sm screens
+        breakpoint: 640,
         settings: {
-          slidesToShow: 1, // Show 1 slide on sm screens
+          slidesToShow: 2, 
         },
       },
     ],
@@ -62,10 +62,10 @@ export default function Carousel() {
           </p>
         </div>
       </div>
-      <div className="relative py-10 w-full mx-auto"> {/* Removed max-w-5xl */}
+      <div className="relative py-10 w-full mx-auto">
         <button
           onClick={() => sliderRef.current.slickPrev()}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
+          className="hidden sm:block absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
         >
           <FaArrowLeft />
         </button>
@@ -79,7 +79,7 @@ export default function Carousel() {
               <img
                 src={item.image_url}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover rounded-lg" // Adjusted height for consistency
+                className="w-full h-full object-cover rounded-lg"
               />
             </div>
           ))}
@@ -87,7 +87,7 @@ export default function Carousel() {
 
         <button
           onClick={() => sliderRef.current.slickNext()}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
+          className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
         >
           <FaArrowRight />
         </button>

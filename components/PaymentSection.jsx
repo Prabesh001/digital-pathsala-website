@@ -6,13 +6,11 @@ const PaymentSection = () => {
   return (
     <div className="space-y-2 lg:col-span-4">
       <h6 className="text-xl font-bold">We Accept</h6>
-      <div className="grid grid-cols-3 gap-2">
+      <div className="flex flex-col gap-y-3 md:grid md:grid-cols-3 md:gap-2">
         {paymentGateway.map((method, index) => (
           <div
             key={index}
-            className={`p-2 bg-white border border-gray-300 flex flex-col gap-2 items-center rounded-md ${
-              index === 0 || index === 3 ? "col-span-2" : ""
-            }`}
+            className={`w-full max-w-[250px] p-2 bg-white border border-gray-300 flex flex-col gap-2 items-center rounded-md`}
           >
             <Image
               src={method.img}

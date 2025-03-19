@@ -26,7 +26,7 @@ const GallerySection = () => {
   );
 
   return (
-    <div className="p-10 flex flex-col gap-y-5">
+    <div className="p-4 sm:p-10 flex flex-col gap-y-1">
       <div>
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-red-600">

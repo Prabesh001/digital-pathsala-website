@@ -4,7 +4,7 @@ import CourseGrid from "@/components/CourseGrid";
 const Courses = () => {
   return (
     <>
-      <div className="px-10 py-10">
+      <div className=" p-4 sm:p-10">
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">
             <h1 className="text-2xl font-bold">

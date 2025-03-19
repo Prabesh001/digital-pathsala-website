@@ -14,7 +14,7 @@ const Home = () => {
   const router = useRouter();
   return (
     <>
-      <section className="p-10 flex justify-center">
+      <section className="p-4 sm:p-10 flex justify-center">
         <div>
           <div className="grid md:grid-cols-2 items-center gap-5 md:gap-10">
             <div className="md:order-1">

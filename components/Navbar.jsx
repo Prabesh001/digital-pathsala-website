@@ -13,17 +13,27 @@ import {
   FaMagnifyingGlass,
 } from "react-icons/fa6";
 import Sidebar from "./Sidebar";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [search, setSearch] = useState("");
+  const router = useRouter();
 
   const handleSidebar = () => {
     setShowSidebar((prev) => !prev);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      router.push(`/search?query=${encodeURIComponent(search)}`);
+    }
+  };
+
   return (
     <section className="bg-white z-20 shadow-md" id="nav">
-      <nav className=" navbar p-5 flex  justify-center">
+      <nav className=" navbar p-4 sm:px-10 sm:py-7 flex  justify-center">
         <Sidebar
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
@@ -59,7 +69,7 @@ const Navbar = () => {
             </div>
 
             <div className="col-span-6 navsearch lg:flex-grow">
-              <form action="#">
+              <form onSubmit={handleSearch}>
                 <div className="border-1 border-gray-300 rounded-2xl px-3 py-2 flex justify-between items-center focus:outline-2 focus:outline-blue-500">
                   <input
                     type="search"
@@ -69,9 +79,10 @@ const Navbar = () => {
                     placeholder="Search course by name"
                     required
                     autoComplete="off"
+                    onChange={(e) => setSearch(e.target.value)}
                   />
-                  <button type="submit" id="searchIcon">
-                    <FaMagnifyingGlass />
+                  <button type="submit" className="ml-1" id="searchIcon">
+                    <FaMagnifyingGlass size={15} />
                   </button>
                 </div>
               </form>
@@ -79,7 +90,7 @@ const Navbar = () => {
 
             <div className="col-span-6 justify-between flex gap-4 items-center">
               <div className="relative w-max">
-                <Link href="#" className="fw-bold w-max">
+                <Link href="/upcoming" className="fw-bold w-max">
                   Upcoming Classes
                 </Link>
                 <div className="absolute -top-3 right-0 bg-orange-600 text-white py-[2px] px-[6px] rounded-sm text-[10px]">
@@ -87,7 +98,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className="relative">
+              <Link href="/course" className="relative">
                 <button
                   id="dropdownHoverButton"
                   data-dropdown-toggle="dropdownHover"
@@ -96,35 +107,7 @@ const Navbar = () => {
                 >
                   Courses <FaAngleDown />
                 </button>
-
-                {/* Dropdown Menu */}
-                <div
-                  id="dropdownHover"
-                  className="z-50 hidden text-start bg-white divide-y divide-gray-100 rounded-lg shadow w-auto max-h-[80vh] overflow-y-auto"
-                >
-                  <ul className="py-2 h-full text-sm text-gray-700">
-                    {[
-                      {
-                        href: "#",
-                        text: "Programming Courses",
-                      },
-                      {
-                        href: "#",
-                        text: "Mobile App Development",
-                      },
-                    ].map((item, index) => (
-                      <li key={index}>
-                        <Link
-                          href={item.href}
-                          className="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          {item.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </Link>
             </div>
 
             <div className="col-span-6 flex gap-4 md:gap-1 items-center justify-end">
@@ -172,7 +155,7 @@ const Navbar = () => {
             <div className="flex justify-between flex-wrap items-center gap-2 py-5">
               <div className="flex gap-2 items-center  text-[16px]">
                 <div className="relative w-max">
-                  <Link href="#" className="fw-bold w-max">
+                  <Link href="/upcoming" className="fw-bold w-max">
                     Upcoming Classes
                   </Link>
                   <div className="absolute -top-3 -right-2 bg-orange-600 text-white py-[2px] px-[6px] rounded-sm text-[10px]">

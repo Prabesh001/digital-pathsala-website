@@ -16,7 +16,7 @@ const InternPartner = () => {
   ];
 
   return (
-    <section className="p-10">
+    <section className="p-4 sm:p-10">
       <div>
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">

@@ -34,7 +34,7 @@ const GallerySection = () => {
     : [];
 
   return (
-    <section className="p-10 bg-gray-100 pt-4 justify-center">
+    <section className="p-4 sm:p-10 bg-gray-100 pt-4 justify-center">
       <div className="space-y-5">
         <div className="flex justify-between items-center">
           <div className="md:w-[50%]">

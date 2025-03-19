@@ -1,7 +1,64 @@
+// // /app/search/page.jsx
+// "use client";
+// import { useSearchParams } from "next/navigation";
+// import { useEffect, useState } from "react";
+
+// const SearchResults = () => {
+//   const searchParams = useSearchParams();
+//   const query = searchParams.get("query");
+//   const [results, setResults] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetchResults = async () => {
+//       if (!query) return;
+
+//       try {
+//         const res = await fetch(
+//           `http://localhost:3000/api/courses/${encodeURIComponent(query)}`
+//         );
+//         const data = await res.json();
+
+//         if (res.ok) {
+//           setResults([data]);
+//         } else {
+//           setResults([]);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchResults();
+//   }, [query]);
+
+//   return (
+//     <div className="p-5">
+//       <h1 className="text-2xl font-bold">Search Results for "{query}"</h1>
+//       {loading ? (
+//         <p>Loading...</p>
+//       ) : results.length > 0 ? (
+//         results.map((course, index) => (
+//           <div key={index} className="border p-3 my-2 rounded">
+//             <h2 className="text-xl font-semibold">{course.name}</h2>
+//             <p>{course.description}</p>
+//           </div>
+//         ))
+//       ) : (
+//         <p>No results found.</p>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default SearchResults;
+
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,13 +78,15 @@ import { enquiryForm, requirements } from "@/utils/formData";
 import AccordianGroup from "@/components/Accordian";
 import { CircularProgress } from "@mui/material";
 import { images } from "@/public/img";
+import ErrorPage from "@/components/ErrorPage";
 
 const CourseDetail = () => {
-  const { id } = useParams();
-  const [course, setCourse] = useState(null);
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+  const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   const {
     register,
@@ -48,29 +107,30 @@ const CourseDetail = () => {
   });
 
   useEffect(() => {
-    if (!id) return;
+    const fetchResults = async () => {
+      if (!query) return;
 
-    const fetchCourseData = async () => {
-      setLoading(true);
       try {
-        const response = await fetch(`http://localhost:3000/api/courses/${id}`);
-        const data = await response.json();
+        const res = await fetch(
+          `http://localhost:3000/api/courses/${encodeURIComponent(query)}`
+        );
+        const data = await res.json();
 
-        if (data.error) {
-          setError(data.error);
-        } else {
+        if (res.ok) {
           setCourse(data);
+        } else {
+          setError(true);
         }
       } catch (error) {
-        console.error("Error fetching course data:", error);
-        setError("Failed to load course data.");
+        setError(true);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCourseData();
-  }, [id]);
+    fetchResults();
+  }, [query]);
 
   useEffect(() => {
     if (course) {
@@ -113,12 +173,12 @@ const CourseDetail = () => {
     }
   };
 
-  if (error) return <p className="text-center py-10 text-red-500">{error}</p>;
-
   return (
     <>
       {loading ? (
         <Loading />
+      ) : error ? (
+        <ErrorPage />
       ) : (
         <div>
           <section className="bg-gray-800 text-white">
